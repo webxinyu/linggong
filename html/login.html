@@ -38,9 +38,9 @@
 			}
 			.regLeft li>h3 {
 				font: 16px/70px "微软雅黑", "黑体";
-				color: #333333;
+				color: #37b5f9;
 				width: 270px;
-				text-align: center;
+				text-align: left;
 				height: 70px;
 				line-height: 70px;
 			}
@@ -54,16 +54,10 @@
 				outline: none;
 			}
 			.phoneNumber {			/* 手机号 */
-				background: url(../img/zc_06.jpg) no-repeat 10px 10px;
+				background:#faffbd url(../img/zc_06.jpg) no-repeat 10px 10px;
 			}
 			.setPassword {
-				background: url(../img/zc_16.jpg) no-repeat 10px 10px;
-			}
-			.surePassworld {
-				background: url(../img/zc_16.jpg) no-repeat 10px 10px;
-			}
-			.identifyingCode {
-				background: url(../img/zc_19.jpg) no-repeat 10px 10px;
+				background:#faffbd url(../img/zc_16.jpg) no-repeat 10px 10px;
 			}
 			.regLeft li>.tips {
 				height: 20px;
@@ -82,14 +76,6 @@
 				text-align: center;
 				line-height: 31px;
 			}
-			.agreementContain {				/* 协议 */
-				height: 32px;
-				line-height: 32px;
-				font-size: 14px;
-			}
-			.agreementContain>a {
-				color: #19aaf8;
-			}
 			.regBtn {
 				width: 270px;
 				height: 33px;
@@ -105,7 +91,7 @@
 			.regRight {					/* 第三方登录 */
 				float: left;
 				width: 185px;
-				height: 408px;
+				height: 280px;
 				padding-left: 51px;
 			}
 			.regRight li>p {
@@ -150,33 +136,18 @@
 		<section class="regesterForm">
 			<ul class="regLeft">
 				<li>
-					<h3>欢迎注册</h3>
+					<h3>登录</h3>
 				</li>
 				<li>
-					<p><input type="tel" class="phoneNumber" id="phoneNumber" placeholder="请输入正确的手机号" maxlength="11" /></p>
+					<p><input type="tel" class="phoneNumber" id="phoneNumber" placeholder="手机号" maxlength="11" /></p>
 					<p class="tips"><span>请输入正确的手机号</span></p>
 				</li>
 				<li>
-					<p><input type="password" name="setPassword" class="setPassword" id="setPassword" placeholder="设置密码，6-18位字母、数字、下划线" /></p>
-					<p class="tips"><span>请输入6-18位以字母开头的字母、数字、下划线</span></p>
+					<p><input type="password" name="setPassword" class="setPassword" id="setPassword" placeholder="密码" /></p>
+					<p class="tips"><span>密码不正确</span></p>
 				</li>
 				<li>
-					<p><input type="password" name="surePassworld" class="surePassworld" id="surePassworld" placeholder="再一次输入" /></p>
-					<p class="tips"><span>两次密码不一致</span></p>
-				</li>
-				<li>
-					<p><input type="text" name="identifyingCode" class="identifyingCode" id="identifyingCode" placeholder="验证码" /></p>
-					<p class="tips"><span>验证码不正确</span></p>
-				</li>
-				<li class="codeContain">
-					<span id="code" class="code">gex3</span>
-				</li>
-				<li class="agreementContain">
-					<input type="checkbox" name="" class="agreement" id="agreement" />
-					已阅读并同意<a href="javascript:;">《XXX使用协议》</a>
-				</li>
-				<li>
-					<input type="button" name="regBtn" class="regBtn" id="regBtn" value="注册" />
+					<input type="button" name="regBtn" class="regBtn" id="regBtn" value="登录" />
 				</li>
 			</ul>
 			<ul class="regRight">
@@ -208,45 +179,9 @@
 					</a>
 				</li>
 				<li>
-					<p>已有账号?<a class="toLogin" id="toLogin" href="login.html">立即登录</a></p>
+					<p>没有账号?<a class="toLogin" id="toLogin" href="regester.html">立即注册</a></p>
 				</li>
 			</ul>
 		</section>
-		<script src="../font/iconfont.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			$(function(){
-				var regObj = {
-					phoneNumber:function(){						//验证手机号
-						var regPhone = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
-						var phoneNumber = $("#phoneNumber").val();						
-						if (regPhone.test(phoneNumber)) {
-							$("#phoneNumber").parent().parent().find(".tips").find("span").css("display","none");
-							return true;
-						} else{
-							$("#phoneNumber").focus();
-							$("#phoneNumber").parent().parent().find(".tips").find("span").css("display","block");
-						}
-					},
-					setPassword:function(){
-						var regPassword = /^\w{6,18}$/
-						var setPassword = $("#setPassword").val();
-						if (regPassword.test(setPassword)) {
-							$("#setPassword").parent().parent().find(".tips").find("span").css("display","none");
-							return true;
-						} else{
-							$("#setPassword").focus();
-							$("#setPassword").parent().parent().find(".tips").find("span").css("display","block");
-						}
-					}
-				};				
-				$("#phoneNumber").blur(function(){
-					regObj.phoneNumber();
-				});
-				$("#setPassword").blur(function(){
-					regObj.setPassword();
-				})
-			})
-		</script>
 	</body>
 </html>
