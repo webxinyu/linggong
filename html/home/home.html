@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>账户中心</title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="../../font/iconfont.css"/>
+		<style type="text/css">
+			body {
+				font-family: "微软雅黑";
+				font-size: 14px;
+			}
+			.typePage {				/* 版心 */
+				width: 1200px;
+				background: #E8ECEF;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+			.homeLeft {				/* 右侧导航 */
+				float: left;
+				width: 150px;
+				background: #0b99db;
+			}
+			.homeLeft li {
+				padding: 20px 0;
+			}
+			.headSculpture {
+				margin: 0 auto;
+				height: 70px;
+				width: 70px;
+				overflow: hidden;
+				border-radius: 50%;
+				-webkit-border-radius: 50%;
+			}
+			.headSculpture>img {
+				width: 100%;
+				height: 100%;
+			}
+			.nickname {
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				color: #fff;
+				font-size: 14px;
+			}
+			.changeTheHeadImage {
+				display: block;
+				height: 24px;
+				line-height: 24px;
+				outline: none;
+				border: 1px #19AAF8 solid;
+				text-align: center;
+				border-radius: 12px;
+				-webkit-border-radius: 12px;
+				background: #0b99db;
+				color: #fff;
+				margin: 0 auto;
+				font-size: 12px;
+				width: 80px;
+				text-align: center;
+			}
+			.listTitle {
+				height: 26px;
+				line-height: 26px;
+				text-align: center;
+				color: #fff;
+			}
+			.listTitle>.iconfont {
+				font-size: 20px;
+			}
+			.listName {
+				height: 24px;
+				color: #fff;
+				text-align: center;
+			}
+			.homeRight {			/* 账户中心右侧内容 */
+				float: right;
+				width: 1040px;				
+			}
+			.personalInformation {
+				height: 118px;
+				border: 1px #DCE3E6 solid;
+				overflow: hidden;
+				background: #fff;
+			}
+			.personalInformation>span {
+				float: left;
+				margin: 14px;
+				height: 90px;
+				width: 90px;
+				border-radius: 45px;
+				-webkit-border-radius: 45px;
+				overflow: hidden;
+			}
+			.personalInformation>span>img {
+				width: 100%;
+				height: 100%;
+			}
+			.personalInformation>ul {
+				float: left;
+				padding: 14px;
+				height: 90px;				
+			}
+			.personalInformation>ul li {
+				height: 30px;
+				line-height: 30px;
+				font-size: 16px;
+			}
+			.dataStatistics { 			/* 数据统计 */
+				
+			}
+			.dataStatistics>h1 {
+				height: 50px;
+				line-height: 50px;
+				font-size: 20px;
+			}
+			.dataStatistics>ul {
+				overflow: hidden;
+				background: #fff;
+			}
+			.dataStatistics>ul li {
+				float: left;
+				width: 240px;
+				height: 180px;
+				margin-right: 20px;
+				border: 2px #DCE3E6 solid;
+				padding: 30px 0;
+			}
+			.dataStatistics>ul li:last-of-type {
+				margin-right: 0;
+				float: right;
+			}
+			.dataStatistics>ul li>h3 {
+				height: 90px;
+				line-height: 90px;
+				text-align: center;
+				font-size: 20px;
+				color: #8F8F94;
+			}
+			.dataStatistics>ul li>p {
+				height: 90px;
+				text-align: center;
+				font-size: 30px;
+			}
+			.dataStatistics>ul li:nth-of-type(1)>p {
+				color: #00C800;
+			}
+			.dataStatistics>ul li:nth-of-type(2)>p {
+				color: #0B99DB;
+			}
+			.dataStatistics>ul li:nth-of-type(3)>p {
+				color: #F26D7E;
+			}
+			.dataStatistics>ul li:nth-of-type(4)>p {
+				color: #FFAA00;
+			}
+			.shopSuccess {			/* 已完成交易的商品 */
+				
+			}
+			.shopSuccess>h1 {
+				height: 50px;
+				line-height: 50px;
+				font-size: 20px;
+			}
+			.shopSuccess>ul {
+				overflow: hidden;
+				background: #fff;
+				padding: 20px 0;
+			}
+			.shopSuccess>ul li {
+				float: left;
+				width: 240px;				
+				padding: 0px 10px;
+			}
+			.shopSuccess>ul li:last-of-type {
+				margin-right: 0;
+				float: right;
+			}
+			.shopSuccess>ul li>h3 {
+				width: 240px;
+				height: 240px;
+			}
+			.shopSuccess>ul li>h3>img {
+				width: 100%;
+				height: 100%;
+				display: block;
+			}
+			.shopSuccess>ul li>h4 {
+				height: 30px;
+				line-height: 30px;
+				color: #0b99db;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.shopSuccess>ul li>p {
+				height: 60px;
+				line-height: 20px;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3;
+				overflow: hidden;
+				text-indent: 2em;
+			}
+			.releasedDemand {			/* 我发布的需求 */
+				
+			}
+			.releasedDemand>h1 {
+				height: 50px;
+				line-height: 50px;
+				font-size: 20px;
+			}
+			.releasedDemand>ul li {
+				background: #fff;
+				border: 1px #DCE3E6 solid;
+				overflow: hidden;
+				height: 80px;
+			}
+			.releasedDemand>ul li>h3 {
+				float: left;
+				height: 60px;
+				left: 60px;
+				padding: 10px;
+			}
+			.releasedDemand>ul li>h3>img {
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				-webkit-border-radius: 50%;
+			}
+			.demandDetails {			/* 需求详情 */
+				float: left;
+				width: 750px;
+				padding: 10px;
+			}
+			.demandDetails>h4 {
+				height: 20px;
+				font-size: 16px;
+			}
+			.demandDetails>p {
+				height: 40px;
+				line-height: 20px;
+				overflow: hidden;
+				text-indent: 2em;
+			}
+			.demandStatus {					/* 发布需求的状态 */
+				float: left;
+				padding: 25px 0;
+				width: 100px;
+			}
+			.demandStatus>span {
+				display: block;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				background: #0b99db;
+				color: #fff;
+				border-radius: 15px;
+				-webkit-border-radius: 15px;
+			}
+			.deleteContain {
+				float: right;
+				height: 30px;
+				line-height: 30px;
+				padding: 25px 10px;
+				cursor: pointer;
+			}
+			.deleteContain>.iconfont {
+				font-size: 25px;
+			}
+		</style>
+	</head>
+	<body>
+		<section class="typePage">
+			<ul class="homeLeft">
+				<li>
+					<div class="headSculpture">
+						<img src="../../img/home/home07.png"/>
+					</div>
+					<p class="nickname">用户昵称</p>
+					<input type="button" name="" class="changeTheHeadImage" id="changeTheHeadImage" value="更换头像" />
+				</li>
+				<li>
+					<p class="listTitle"><i class="iconfont icon-ziliaoku"></i></p>
+					<p class="listName">资料库</p>
+				</li>
+				<li>
+					<p class="listTitle"><i class="iconfont icon-wodedingdan"></i></p>
+					<p class="listName">我的订单</p>
+				</li>
+			</ul>
+			<div class="homeRight">
+				<!-- 个人信息 -->
+				<div class="personalInformation">
+					<span>
+						<img src="../../img/home/home07.png"/>
+					</span>
+					<ul>
+						<li>用户昵称</li>
+						<li>13271060937</li>
+						<li>总交易量60笔</li>
+					</ul>
+				</div>
+				<!-- 个人交易数据统计 -->
+				<div class="dataStatistics">
+					<h1>数据统计</h1>
+					<ul>
+						<li>
+							<h3>总交易量</h3>
+							<p>28564</p>
+						</li>
+						<li>
+							<h3>我发布的数量</h3>
+							<p>28564</p>
+						</li>
+						<li>
+							<h3>我的接单总量</h3>
+							<p>28564</p>
+						</li>
+						<li>
+							<h3>信用评分</h3>
+							<p>28564</p>
+						</li>
+					</ul>
+				</div>
+				<!-- 已完成交易的商品 -->
+				<div class="shopSuccess">
+					<h1>我完成的需求</h1>
+					<ul>
+						<li>
+							<h3><img src="../../img/home/home01.png"/></h3>
+							<h4>UI设计图</h4>
+							<p>美丽的风景总是需要和最爱的人一起去欣赏，每一段旅行都是人生的一场修行。</p>
+						</li>
+						<li>
+							<h3><img src="../../img/home/home07.png"/></h3>
+							<h4>情侣图片</h4>
+							<p>美丽的风景总是需要和最爱的人一起去欣赏，每一段旅行都是人生的一场修行。每一段旅行都是人生的一场修行。每一段旅行都是人生的一场修行。</p>
+						</li>
+						<li>
+							<h3><img src="../../img/home/home05.png"/></h3>
+							<h4>自制遥控汽车</h4>
+							<p>美丽的风景总是需要和最爱的人一起去欣赏，每一段旅行都是人生的一场修行。</p>
+						</li>
+						<li>
+							<h3><img src="../../img/home/home06.png"/></h3>
+							<h4>共享爱奇艺会员</h4>
+							<p>美丽的风景总是需要和最爱的人一起去欣赏，每一段旅行都是人生的一场修行。</p>
+						</li>
+					</ul>
+				</div>
+				<!-- 我发布的需求 -->
+				<div class="releasedDemand">
+					<h1>我发布的需求</h1>
+					<ul>
+						<li>
+							<h3><img src="../../img/home/home07.png"/></h3>
+							<div class="demandDetails">
+								<h4>UI设计图</h4>
+								<p>
+									美丽的风景总是需要和最爱的人一起去欣赏，每一段旅行都是人生的一场修行。
+									美丽的风景总是需要和最爱的人一起去欣赏，每一段旅行都是人生的一场修行。
+									美丽的风景总是需要和最爱的人一起去欣赏。
+								</p>
+							</div>
+							<div class="demandStatus">
+								<span id="status">进行中</span>
+							</div>
+							<div class="deleteContain">
+								<i class="iconfont icon-lajixiang"></i>
+							</div>
+						</li>
+						<li>
+							<h3><img src="../../img/home/home07.png"/></h3>
+							<div class="demandDetails">
+								<h4>UI设计图</h4>
+								<p>美丽的风景总是需要和最爱的人一起去欣赏，每一段旅行都是人生的一场修行。</p>
+							</div>
+							<div class="demandStatus">
+								<span id="status">进行中</span>
+							</div>
+							<div class="deleteContain">
+								<i class="iconfont icon-lajixiang"></i>
+							</div>
+						</li>
+						<li>
+							<h3><img src="../../img/home/home07.png"/></h3>
+							<div class="demandDetails ">
+								<h4>UI设计图</h4>
+								<p>美丽的风景总是需要和最爱的人一起去欣赏，每一段旅行都是人生的一场修行。</p>
+							</div>
+							<div class="demandStatus">
+								<span id="status">进行中</span>
+							</div>
+							<div class="deleteContain">
+								<i class="iconfont icon-lajixiang"></i>
+							</div>
+						</li>
+						<li>
+							<h3><img src="../../img/home/home07.png"/></h3>
+							<div class="demandDetails">
+								<h4>UI设计图</h4>
+								<p>美丽的风景总是需要和最爱的人一起去欣赏，每一段旅行都是人生的一场修行。</p>
+							</div>
+							<div class="demandStatus">
+								<span id="status">进行中</span>
+							</div>
+							<div class="deleteContain">
+								<i class="iconfont icon-lajixiang"></i>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		
+		
+		
+		
+		<script src="../../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+			})
+		</script>
+	</body>
+</html>
