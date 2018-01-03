@@ -75,20 +75,31 @@
 				display: none;
 			}
 			.code {
-				display: block;
+				display: inline-block;
 				width: 97px;
 				height: 31px;
 				border: 1px solid #dddddd;
 				text-align: center;
 				line-height: 31px;
+				cursor: pointer;
 			}
-			.agreementContain {				/* 协议 */
+			.codeContain>span:nth-of-type(2) {
+				display: inline-block;
+				padding-left: 10px;
+				height: 31px;
+				text-align: left;
+				line-height: 31px;
+			}
+			.con {				/* 协议 */
 				height: 32px;
 				line-height: 32px;
 				font-size: 14px;
 			}
-			.agreementContain>a {
+			.con>a {
 				color: #19aaf8;
+			}
+			.agreement {
+				border: 1px #f00 solid;
 			}
 			.regBtn {
 				width: 270px;
@@ -99,7 +110,8 @@
 				text-align: center;
 				border: 0px;
 				color: #fff;
-				border-radius: 3px;
+				border-radius: 4px;
+				outline: none;
 				cursor: pointer;
 			}
 			.regRight {					/* 第三方登录 */
@@ -170,10 +182,14 @@
 				</li>
 				<li class="codeContain">
 					<span id="code" class="code">gex3</span>
+					<span>点击图片刷新验证码</span>
 				</li>
 				<li class="agreementContain">
-					<input type="checkbox" name="" class="agreement" id="agreement" />
-					已阅读并同意<a href="javascript:;">《XXX使用协议》</a>
+					<div class="con">
+						<input type="checkbox" name="" class="agreement" id="agreement" />
+						已阅读并同意<a href="javascript:;">《XXX使用协议》</a>
+					</div>
+					<p class="tips"><span>请勾选</span></p>
 				</li>
 				<li>
 					<input type="button" name="regBtn" class="regBtn" id="regBtn" value="注册" />
@@ -238,14 +254,77 @@
 							$("#setPassword").focus();
 							$("#setPassword").parent().parent().find(".tips").find("span").css("display","block");
 						}
+					},
+					surePassworld:function(){
+						var setPassword = $("#setPassword").val();//第一次输入的密码
+						var surePassworld = $("#surePassworld").val();//第二次输入的密码
+						if (setPassword === surePassworld) {
+							$("#surePassworld").parent().parent().find(".tips").find("span").css("display","none");
+							return true;
+						} else{
+							$("#surePassworld").focus();
+							$("#surePassworld").parent().parent().find(".tips").find("span").css("display","block");
+						}
+					},
+					createCode:function(){
+						/*随机生成4位验证码*/
+						/*step1:将所有字母，数字装入一个数组备用*/
+						var codes=[1,2,3,4,5,6,7,8,9,0,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+						var arr=[];
+						for(var i=0;i<4;i++) {   //从0-61之间取随机数
+						    var index = Math.floor(Math.random() * (61 - 0 + 1) + 0);
+						    var char = codes[index];
+						    arr.push(char);
+						}
+						/*console.log(arr);*/
+						var code=arr.join("");
+						return code; 
+					},
+					identifyingCode:function(){
+						var codeNum = $("#code").text();
+						var identifyingCode = $("#identifyingCode").val();
+						if (codeNum == identifyingCode) {
+							$("#identifyingCode").parent().parent().find(".tips").find("span").css("display","none");
+							return true;
+						} else{
+							$("#identifyingCode").focus();
+							$("#identifyingCode").parent().parent().find(".tips").find("span").css("display","block");
+						}
+					},
+					regBtn:function(){
+						/* 注册按钮逻辑 */
+						if (regObj.phoneNumber() && regObj.setPassword() && regObj.surePassworld() && regObj.identifyingCode() && $("#agreement")[0].checked) {
+							console.log("注册成功");
+						} else{
+							return;
+						}				
 					}
-				};				
-				$("#phoneNumber").blur(function(){
+				};
+				$("#agreement")[0].checked = true;
+				$("#agreement")[0].disabled = true;
+				console.log($("#agreement")[0].checked)
+				$("#phoneNumber").blur(function(){		//手机号
 					regObj.phoneNumber();
 				});
-				$("#setPassword").blur(function(){
+				$("#setPassword").blur(function(){		//设置密码
 					regObj.setPassword();
-				})
+				});
+				$("#surePassworld").blur(function(){	//再一次输入密码
+					regObj.surePassworld();
+				});
+				$("#identifyingCode").blur(function(){	//验证码
+					regObj.identifyingCode();
+				});
+				/* 验证码更新  */
+				$("#code").unbind("click").on("click",function(){
+					var codeNum = regObj.createCode();
+					$(this).text(codeNum);
+				});
+				
+				/* 注册按钮逻辑 */
+				$("#regBtn").on("click",function(){
+					regObj.regBtn();
+				});
 			})
 		</script>
 	</body>
