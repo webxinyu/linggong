@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>账户中心</title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="../../font/iconfont.css"/>
+		<style type="text/css">
+			body {
+				font-family: "微软雅黑";
+				font-size: 14px;
+			}
+			a {
+				color: #333;
+			}
+			.typePage {				/* 版心 */
+				width: 1200px;
+				background: #E8ECEF;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+			.homeLeft {				/* 右侧导航 */
+				float: left;
+				width: 150px;
+				background: #0b99db;
+			}
+			.homeLeft li {
+				padding: 20px 0;
+			}
+			.myOrders {
+				background: #0a8dca;
+			}
+			.headSculpture {
+				margin: 0 auto;
+				height: 70px;
+				width: 70px;
+				overflow: hidden;
+				border-radius: 50%;
+				-webkit-border-radius: 50%;
+			}
+			.headSculpture>img {
+				width: 100%;
+				height: 100%;
+			}
+			.nickname {
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				color: #fff;
+				font-size: 14px;
+			}
+			.changeTheHeadImage {
+				display: block;
+				height: 24px;
+				line-height: 24px;
+				outline: none;
+				border: 1px #19AAF8 solid;
+				text-align: center;
+				border-radius: 12px;
+				-webkit-border-radius: 12px;
+				background: #0b99db;
+				color: #fff;
+				margin: 0 auto;
+				font-size: 12px;
+				width: 80px;
+				text-align: center;
+			}
+			.listTitle {
+				height: 26px;
+				line-height: 26px;
+				text-align: center;
+				color: #fff;
+			}
+			.listTitle>.iconfont {
+				font-size: 20px;
+			}
+			.listName {
+				height: 24px;
+				color: #fff;
+				text-align: center;
+			}
+			.homeRight {			/* 账户中心右侧内容 */
+				float: right;
+				width: 1040px;				
+			}
+			.myOrdersList {			/* 订单列表 */
+				
+			}
+			.myOrdersList>li {
+				background: #fff;
+				border: 1px #ececec solid;
+				margin-bottom: 10px;
+			}
+			.myOrdersList>li:hover {
+				border: 1px #999 solid;
+			}
+			.myOrdersList li>h2 {
+				height: 40px;
+				background: #f1f1f1;
+				color: #3c3c3c;
+				overflow: hidden;
+			}
+			.deleteOrder {				/* 删除按钮 */
+				cursor: pointer;
+			}
+			.myOrdersList li>h2>span {
+				float: left;
+				height: 40px;
+				line-height: 40px;
+				padding: 0 30px 0 14px;
+			}
+			.myOrdersList li>h2>span:last-of-type {
+				float: right;
+			}
+			.orders {				/* 订单信息 */
+				height: 108px;
+				overflow: hidden;
+			}
+			.orders>li {
+				float: right;
+				padding: 14px 20px;
+				height: 80px;
+				line-height: 80px;
+				color: #333;
+				border-left: 1px #ececec solid;
+			}
+			.orders li:nth-of-type(1) {
+				float: left;
+				padding: 14px 14px;
+				border-left: 0;
+			}
+			.orders li:nth-of-type(1)>img {
+				height: 80px;
+				width: 80px;
+			}
+			.orders li:nth-of-type(2) {
+				float: left;
+				width: 400px;
+				line-height: 20px;
+				padding: 14px 14px;
+				height: 80px;
+				border-left: 0;
+			}
+			.evaluate {				/* 评价 */
+				display: inline-block;
+				height: 30px;
+				line-height: 30px;
+				width: 60px;
+				border: 1px #999 solid;
+				text-align: center;
+				border-radius: 6px;
+				-webkit-border-radius: 4px;
+			}
+			.evaluate:hover {
+				color: #ff6666;
+				border: 1px #ff6666 solid;
+			}
+			.toOrdersDetail:hover {
+				color: #FF6666;
+			}
+			.ordersBottom {						/* 日历和订单详情 */
+				overflow: hidden;
+				background: #fff;
+			}
+			.calendar {
+				float: left;
+				width: 600px;
+				height: 400px;
+			}
+			.calendar>iframe {
+				width: 600px;
+				height: 400px;
+			}
+			.ordersDetail {
+				float: right;
+				width: 400px;
+			}
+			.ordersDetail li {
+				padding: 10px 0;
+			}
+			.totalOrderPrice {		/* 订单总价 */
+				font-size: 16px;
+				font-weight: bold;
+			} 
+			.actualPayment {		/* 实付款 */
+				font-size: 18px;
+				font-weight: bold;
+				color: #f00;
+			}
+		</style>
+	</head>
+	<body>
+		<section class="typePage">
+			<ul class="homeLeft">
+				<li>
+					<div class="headSculpture">
+						<img src="../../img/home/home07.png"/>
+					</div>
+					<p class="nickname">用户昵称</p>
+					<input type="button" name="" class="changeTheHeadImage" id="changeTheHeadImage" value="更换头像" />
+				</li>
+				<li>
+					<p class="listTitle"><i class="iconfont icon-ziliaoku"></i></p>
+					<p class="listName">资料库</p>
+				</li>
+				<li class="myOrders">
+					<p class="listTitle"><i class="iconfont icon-wodedingdan"></i></p>
+					<p class="listName">我的订单</p>
+				</li>
+			</ul>
+			<div class="homeRight">
+				<!-- 订单列表 -->
+				<ul class="myOrdersList">
+					<li>
+						<h2>
+							<span>2017-01-04</span>
+							<span>订单号：<b>54544544548</b></span>
+							<span id="deleteOrder" class="deleteOrder">
+								<i class="iconfont icon-lajixiang"></i>
+							</span>
+						</h2>
+						<ul class="orders">
+							<li>
+								<img src="../../img/home/home05.png"/>
+							</li>
+							<li>
+								<h4>商品或服务名称</h4>
+								<p>备注信息</p>
+							</li>
+							<li><a class="evaluate" href="javascript:;">评价</a></li>
+							<li><a class="toOrdersDetail" href="javascript:;">订单详情</a></li>
+							<li>交易状态</li>
+							<li>交易价格</li>
+						</ul>
+					</li>
+					<li>
+						<h2>
+							<span>2017-01-04</span>
+							<span>订单号：<b>54544544548</b></span>
+							<span id="deleteOrder" class="deleteOrder">
+								<i class="iconfont icon-lajixiang"></i>
+							</span>
+						</h2>
+						<ul class="orders">
+							<li>
+								<img src="../../img/home/home05.png"/>
+							</li>
+							<li>
+								<h4>商品或服务名称</h4>
+								<p>备注信息</p>
+							</li>
+							<li><a class="evaluate" href="javascript:;">评价</a></li>
+							<li><a class="toOrdersDetail" href="javascript:;">订单详情</a></li>
+							<li>交易状态</li>
+							<li>交易价格</li>
+						</ul>
+					</li>
+					<li>
+						<h2>
+							<span>2017-01-04</span>
+							<span>订单号：<b>54544544548</b></span>
+							<span id="deleteOrder" class="deleteOrder">
+								<i class="iconfont icon-lajixiang"></i>
+							</span>
+						</h2>
+						<ul class="orders">
+							<li>
+								<img src="../../img/home/home05.png"/>
+							</li>
+							<li>
+								<h4>商品或服务名称</h4>
+								<p>备注信息</p>
+							</li>
+							<li><a class="evaluate" href="javascript:;">评价</a></li>
+							<li><a class="toOrdersDetail" href="javascript:;">订单详情</a></li>
+							<li>交易状态</li>
+							<li>交易价格</li>
+						</ul>
+					</li>
+				</ul>
+				<div class="ordersBottom">
+					<div class="calendar">
+						<iframe src="calendar.html"></iframe>
+					</div>
+					<ul class="ordersDetail">
+						<li>
+							<span>收货地址：</span>
+							<span>上海 上海市 闵行区 新虹街道 爱博一村</span>
+						</li>
+						<li>
+							<span>订单编号：</span>
+							<span>86083086154562327</span>
+						</li>
+						<li>
+							<span>商家：</span>
+							<span>特步官方旗舰店</span>
+						</li>
+						<li>
+							<span>物流：</span>
+							<span>顺丰速运运单号:289151460485</span>
+						</li>
+						<li>
+							<span>商品总价：</span>
+							<span>&yen;129.00</span>
+						</li>
+						<li>
+							<span>运费(快递)：</span>
+							<span>&yen;0.00</span>
+						</li>
+						<li class="totalOrderPrice">
+							<span>订单总价：</span>
+							<span>&yen;0.00</span>
+						</li>
+						<li class="actualPayment">
+							<span>实付款：</span>
+							<span>&yen;0.00</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		
+		
+		
+		
+		<script src="../../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+			})
+		</script>
+	</body>
+</html>
