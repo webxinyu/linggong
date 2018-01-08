@@ -28,6 +28,10 @@
 			.homeLeft li {
 				padding: 20px 0;
 			}
+			.homeLeft li:nth-of-type(2),
+			.homeLeft li:nth-of-type(3) {
+				cursor: pointer;
+			}
 			.myOrders {
 				background: #0a8dca;
 			}
@@ -209,7 +213,7 @@
 					<p class="nickname">用户昵称</p>
 					<input type="button" name="" class="changeTheHeadImage" id="changeTheHeadImage" value="更换头像" />
 				</li>
-				<li>
+				<li class="database">
 					<p class="listTitle"><i class="iconfont icon-ziliaoku"></i></p>
 					<p class="listName">资料库</p>
 				</li>
@@ -250,7 +254,7 @@
 				        <div id="pagination-demo1"></div>
 				    </section>
 				</div>
-				<div class="ordersBottom">
+				<div class="ordersBottom" id="ordersBottom">
 					<div class="calendar">
 						<iframe src="calendar.html"></iframe>
 					</div>
@@ -299,7 +303,9 @@
 		<script src="jQueryPaging/dist/pagination.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(function(){
-				
+				$(".database").on("click",function(){
+					window.location.href = "home.html";
+				});
 			})
 		</script>
 		<script>
@@ -343,7 +349,7 @@
 										<p>${'备注信息'}</p>
 									</li>
 									<li><a class="evaluate" href="javascript:;">${'评价'}</a></li>
-									<li><a class="toOrdersDetail" href="javascript:;">${'订单详情'}</a></li>
+									<li><a class="toOrdersDetail" href="#ordersBottom">${'订单详情'}</a></li>
 									<li>${'交易状态'}</li>
 									<li>${'交易价格'}</li>
 								</ul>                   

@@ -24,6 +24,13 @@
 			.homeLeft li {
 				padding: 20px 0;
 			}
+			.homeLeft li:nth-of-type(2),
+			.homeLeft li:nth-of-type(3) {
+				cursor: pointer;
+			}
+			.database {
+				background: #0a8dca;
+			}
 			.headSculpture {
 				margin: 0 auto;
 				height: 70px;
@@ -265,6 +272,7 @@
 				line-height: 30px;
 				padding: 25px 10px;
 				cursor: pointer;
+				display: none;
 			}
 			.deleteContain>.iconfont {
 				font-size: 25px;
@@ -281,11 +289,11 @@
 					<p class="nickname">用户昵称</p>
 					<input type="button" name="" class="changeTheHeadImage" id="changeTheHeadImage" value="更换头像" />
 				</li>
-				<li>
+				<li class="database">
 					<p class="listTitle"><i class="iconfont icon-ziliaoku"></i></p>
 					<p class="listName">资料库</p>
 				</li>
-				<li>
+				<li class="myOrders">
 					<p class="listTitle"><i class="iconfont icon-wodedingdan"></i></p>
 					<p class="listName">我的订单</p>
 				</li>
@@ -427,7 +435,15 @@
 		<script src="../../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(function(){
-				
+				$(".releasedDemand>ul li").mouseenter(function(){		//我发布的需求列表鼠标移入
+					$(this).find(".deleteContain").css("display","block");
+				});
+				$(".releasedDemand>ul li").mouseleave(function(){		//我发布的需求列表鼠标移出
+					$(this).find(".deleteContain").css("display","none");
+				});
+				$(".myOrders").on("click",function(){			//跳转到订单页面
+					window.location.href = "orders.html";
+				});
 			})
 		</script>
 	</body>
