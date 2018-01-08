@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>账户中心</title>
+		<link rel="stylesheet" type="text/css" href="jQueryPaging/dist/pagination.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
 		<link rel="stylesheet" type="text/css" href="../../font/iconfont.css"/>
 		<style type="text/css">
@@ -119,10 +120,11 @@
 			.orders>li {
 				float: right;
 				padding: 14px 20px;
-				height: 80px;
+				height: 108px;
 				line-height: 80px;
 				color: #333;
 				border-left: 1px #ececec solid;
+				margin: 0;
 			}
 			.orders li:nth-of-type(1) {
 				float: left;
@@ -138,7 +140,7 @@
 				width: 400px;
 				line-height: 20px;
 				padding: 14px 14px;
-				height: 80px;
+				height: 108px;
 				border-left: 0;
 			}
 			.evaluate {				/* 评价 */
@@ -158,6 +160,14 @@
 			.toOrdersDetail:hover {
 				color: #FF6666;
 			}
+			/*****分页*****/
+			#wrapper{
+            	width: 1040px;
+            	margin: 20px auto;
+	        }
+	        .data-container{
+	            margin-top: 5px;
+	        }
 			.ordersBottom {						/* 日历和订单详情 */
 				overflow: hidden;
 				background: #fff;
@@ -210,7 +220,7 @@
 			</ul>
 			<div class="homeRight">
 				<!-- 订单列表 -->
-				<ul class="myOrdersList">
+				<!--<ul class="myOrdersList">
 					<li>
 						<h2>
 							<span>2017-01-04</span>
@@ -233,51 +243,13 @@
 							<li>交易价格</li>
 						</ul>
 					</li>
-					<li>
-						<h2>
-							<span>2017-01-04</span>
-							<span>订单号：<b>54544544548</b></span>
-							<span id="deleteOrder" class="deleteOrder">
-								<i class="iconfont icon-lajixiang"></i>
-							</span>
-						</h2>
-						<ul class="orders">
-							<li>
-								<img src="../../img/home/home05.png"/>
-							</li>
-							<li>
-								<h4>商品或服务名称</h4>
-								<p>备注信息</p>
-							</li>
-							<li><a class="evaluate" href="javascript:;">评价</a></li>
-							<li><a class="toOrdersDetail" href="javascript:;">订单详情</a></li>
-							<li>交易状态</li>
-							<li>交易价格</li>
-						</ul>
-					</li>
-					<li>
-						<h2>
-							<span>2017-01-04</span>
-							<span>订单号：<b>54544544548</b></span>
-							<span id="deleteOrder" class="deleteOrder">
-								<i class="iconfont icon-lajixiang"></i>
-							</span>
-						</h2>
-						<ul class="orders">
-							<li>
-								<img src="../../img/home/home05.png"/>
-							</li>
-							<li>
-								<h4>商品或服务名称</h4>
-								<p>备注信息</p>
-							</li>
-							<li><a class="evaluate" href="javascript:;">评价</a></li>
-							<li><a class="toOrdersDetail" href="javascript:;">订单详情</a></li>
-							<li>交易状态</li>
-							<li>交易价格</li>
-						</ul>
-					</li>
-				</ul>
+				</ul>-->
+				<div id="wrapper">
+				    <section>
+				        <div class="data-container"></div>
+				        <div id="pagination-demo1"></div>
+				    </section>
+				</div>
 				<div class="ordersBottom">
 					<div class="calendar">
 						<iframe src="calendar.html"></iframe>
@@ -324,10 +296,84 @@
 		
 		
 		<script src="../../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="jQueryPaging/dist/pagination.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(function(){
 				
 			})
+		</script>
+		<script>
+		    $(function(){
+	
+		        function createDemo(name){
+		            var container = $('#pagination-' + name);
+		            var sources = function(){
+		                var result = [];
+	
+		                for(var i = 1; i < 196; i++){
+		                    result.push(i);
+		                }
+	
+		                return result;
+		            }();
+	
+		            var options = {
+		                dataSource: sources,
+		                className: 'paginationjs-theme-blue',
+		                callback: function(response, pagination){
+		                    window.console && console.log(response, pagination);
+	
+		                    var dataHtml = '<ul class="myOrdersList">';
+	
+		                    $.each(response, function(index, item){
+		                        dataHtml += `<li>
+		                        <h2>
+									<span>${'2017-01-04'}</span>
+									<span>${'订单号：'}<b>${'54544544548'}</b></span>
+									<span id="deleteOrder" class="deleteOrder">
+										<i class="iconfont icon-lajixiang"></i>
+									</span>
+								</h2>
+								<ul class="orders">
+									<li>
+										<img src="../../img/home/home05.png"/>
+									</li>
+									<li>
+										<h4>${'商品或服务名称'}</h4>
+										<p>${'备注信息'}</p>
+									</li>
+									<li><a class="evaluate" href="javascript:;">${'评价'}</a></li>
+									<li><a class="toOrdersDetail" href="javascript:;">${'订单详情'}</a></li>
+									<li>${'交易状态'}</li>
+									<li>${'交易价格'}</li>
+								</ul>                   
+		                        </li>`;
+		                    });
+	
+		                    dataHtml += '</ul>';
+	
+		                    container.prev().html(dataHtml);
+		                }
+		            };
+	
+		            //$.pagination(container, options);
+	
+		            container.addHook('beforeInit', function(){
+		                window.console && console.log('beforeInit...');
+		            });
+		            container.pagination(options);
+	
+		            container.addHook('beforePageOnClick', function(){
+		                window.console && console.log('beforePageOnClick...');
+		                //return false
+		            });
+	
+		            return container;
+		        }
+	
+		        createDemo('demo1');
+	
+		    });
 		</script>
 	</body>
 </html>
